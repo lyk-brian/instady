@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.myapplication.FakeHome
+import com.example.myapplication.Home
 import com.example.myapplication.NavRoute
 
 import com.example.myapplication.utils.AuthResultContract
@@ -70,6 +72,6 @@ fun AuthScreen(navHostController: NavHostController, route: String, authViewMode
         authResultLauncher.launch(signInRequestCode)
     })
     user?.let{
-        navHostController.navigate(route)
+        FakeHome{navHostController.navigate(route)}
     }
 }

@@ -37,6 +37,7 @@ object NavRoute{
     val SETTING = "Setting"
     val FRIENDS = "Friends"
     val JUDGE = "Judge"
+    val FAKEHOME = "FakeHome"
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -45,14 +46,22 @@ object NavRoute{
 fun Navigation(navHostController: NavHostController,authViewModel: AuthViewModel){
     NavHost(
         navController = navHostController,
-        startDestination = NavRoute.HOME
+        startDestination = NavRoute.SPLASHSCREEN
     ){
+        composable(NavRoute.FAKEHOME) {
+            FakeHome {
+                navHostController.navigate(NavRoute.HOME)
+            }
+        }
+
         composable(NavRoute.SPLASHSCREEN){
             SplashScreen{navHostController.navigate(NavRoute.SIGNIN)}
         }
+
         composable(NavRoute.SIGNIN){
             AuthScreen(navHostController,NavRoute.HOME,authViewModel)
         }
+
         composable(NavRoute.HOME){
             Home {
                 navHostController.navigate(NavRoute.PRE_SETTING)
